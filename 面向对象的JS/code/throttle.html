@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    function throttle(fn, timeout) {
+        let firstTime = true;
+        let timer = null;
+        return function() {
+            const self = this;
+            if (firstTime) {
+                return fn.bind(this, arguments);
+            }
+            if (timer) return;
+            timer = window.setTimeout(function() {
+                window.clearTimeout(timer);
+                timer = null;
+                fn.bind(self, arguments);
+            }, timeout);
+        }
+    }
+</script>
+</html>

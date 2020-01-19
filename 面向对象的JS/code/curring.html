@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+</body>
+<script>
+    function curring(fn) {
+        const args = [];
+        return function() {
+            if (arguments.length === 0) {
+                return args.reduce((pre, item) => pre + item, 0);
+            } else {
+                Array.prototype.push.apply(args, arguments);
+                return arguments.callee;
+            }
+        }
+    }
+let cost = (function() {
+    let totalCost = 0;
+    return function() {
+        const args = Array.from(arguments);
+        totalCost += args.reduce((pre, item) => pre + item);
+        return totalCost;
+    }
+})()
+
+</script>
+</html>

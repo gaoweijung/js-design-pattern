@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    Function.prototype.uncurring = function() {
+        const self = this;
+        return function() {
+            const object = Array.prototype.shift.call(arguments);
+            self.bind(object, arguments);
+        }
+    }
+
+    const push = Array.prototype.push.uncurring();
+    const obj = {};
+    push(obj, 1);
+</script>
+</html>
